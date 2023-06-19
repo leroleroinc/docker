@@ -1,0 +1,38 @@
+---
+version: '3.8'
+# One may either build from a public git repo or a local repo
+
+services:
+    gateway:
+        build: https://github.com/leroleroinc/flux-gateway.git
+        #build: ./relative/path/to/flux-gateway
+        ports:
+            - 8080:8080
+    adverbs:
+        build: https://github.com/leroleroinc/flux-adverbs.git
+        #build: ./relative/path/to/flux-adverbs
+        ports:
+            - 8081:8081
+        depends_on:
+            - database
+    verbs:
+        build: https://github.com/leroleroinc/flux-verbs.git
+        #build: ./relative/path/to/flux-verbs
+        ports:
+            - 8082:8082
+        depends_on:
+            - database
+    nouns:
+        build: https://github.com/leroleroinc/flux-nouns.git
+        #build: ./relative/path/to/flux-nouns
+        ports:
+            - 8083:8083
+        depends_on:
+            - database
+    database:
+        build: https://github.com/leroleroinc/database.git
+        #build: ./relative/path/to/database
+        ports:
+            - 27017:27017
+        environment:
+            MONGO_INITDB_DATABASE: lerolero
