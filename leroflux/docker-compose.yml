@@ -4,43 +4,50 @@ version: '3.8'
 
 services:
     gateway:
-        build: https://github.com/leroleroinc/flux-gateway.git
-        #build: ../../flux-gateway
+        #build: https://github.com/leroleroinc/flux-gateway.git
+        build: ../../flux-gateway
         ports:
             - 8080:8080
     adverbs:
-        build: https://github.com/leroleroinc/flux-adverbs.git
-        #build: ../../flux-adverbs
+        #build: https://github.com/leroleroinc/flux-adverbs.git
+        build: ../../flux-adverbs
         ports:
             - 8081:8081
         depends_on:
             - database
             - discovery
+            - cache
     verbs:
-        build: https://github.com/leroleroinc/flux-verbs.git
-        #build: ../../flux-verbs
+        #build: https://github.com/leroleroinc/flux-verbs.git
+        build: ../../flux-verbs
         ports:
             - 8082:8082
         depends_on:
             - database
             - discovery
+            - cache
     nouns:
-        build: https://github.com/leroleroinc/flux-nouns.git
-        #build: ../../flux-nouns
+        #build: https://github.com/leroleroinc/flux-nouns.git
+        build: ../../flux-nouns
         ports:
             - 8083:8083
         depends_on:
             - database
             - discovery
+            - cache
     database:
-        build: https://github.com/leroleroinc/database.git
-        #build: ../../database
+        #build: https://github.com/leroleroinc/database.git
+        build: ../../database
         ports:
             - 27017:27017
         environment:
             MONGO_INITDB_DATABASE: lerolero
     discovery:
-        build: https://github.com/leroleroinc/flux-discovery.git
-        #build: ../../flux-discovery
+        #build: https://github.com/leroleroinc/flux-discovery.git
+        build: ../../flux-discovery
         ports:
             - 8761:8761
+    cache:
+        image: redis:7.0-alpine
+        ports:
+            - 6379:6379
