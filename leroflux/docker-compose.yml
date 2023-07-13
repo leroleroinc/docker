@@ -11,8 +11,8 @@ services:
     adverbs:
         #build: https://github.com/leroleroinc/flux-adverbs.git
         build: ../../flux-adverbs
-        ports:
-            - 8081:8081
+        #ports:
+        #    - 8081:8081
         depends_on:
             - database
             - discovery
@@ -20,8 +20,8 @@ services:
     verbs:
         #build: https://github.com/leroleroinc/flux-verbs.git
         build: ../../flux-verbs
-        ports:
-            - 8082:8082
+        #ports:
+        #    - 8082:8082
         depends_on:
             - database
             - discovery
@@ -29,8 +29,8 @@ services:
     nouns:
         #build: https://github.com/leroleroinc/flux-nouns.git
         build: ../../flux-nouns
-        ports:
-            - 8083:8083
+        #ports:
+        #    - 8083:8083
         depends_on:
             - database
             - discovery

@@ -4,37 +4,40 @@ version: '3.8'
 
 services:
     gateway:
-        #build: https://github.com/leroleroinc/mvc-gateway.git
-        build: ../../mvc-gateway
+        #build: https://github.com/leroleroinc/event-gateway.git
+        build: ../../event-gateway
         ports:
             - 8080:8080
     adverbs:
-        #build: https://github.com/leroleroinc/mvc-adverbs.git
-        build: ../../mvc-adverbs
+        #build: https://github.com/leroleroinc/event-adverbs.git
+        build: ../../event-adverbs
         #ports:
         #    - 8081:8081
         depends_on:
             - database
             - discovery
             - cache
+            - rabbitmq
     verbs:
-        #build: https://github.com/leroleroinc/mvc-verbs.git
-        build: ../../mvc-verbs
+        #build: https://github.com/leroleroinc/event-verbs.git
+        build: ../../event-verbs
         #ports:
         #    - 8082:8082
         depends_on:
             - database
             - discovery
             - cache
+            - rabbitmq
     nouns:
-        #build: https://github.com/leroleroinc/mvc-nouns.git
-        build: ../../mvc-nouns
+        #build: https://github.com/leroleroinc/event-nouns.git
+        build: ../../event-nouns
         #ports:
         #    - 8083:8083
         depends_on:
             - database
             - discovery
             - cache
+            - rabbitmq
     database:
         #build: https://github.com/leroleroinc/database.git
         build: ../../database
@@ -43,11 +46,16 @@ services:
         environment:
             MONGO_INITDB_DATABASE: lerolero
     discovery:
-        #build: https://github.com/leroleroinc/mvc-discovery.git
-        build: ../../mvc-discovery
+        #build: https://github.com/leroleroinc/flux-discovery.git
+        build: ../../flux-discovery
         ports:
             - 8761:8761
     cache:
         image: redis:7.0-alpine
         ports:
             - 6379:6379
+    rabbitmq:
+        image: rabbitmq:3.12-management #-alpine
+        ports:
+            - 5672:5672
+            - 15672:15672
