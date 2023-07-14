@@ -1,5 +1,16 @@
 # docker
 
+## Clone All Repositories
+
+to clone all repositories run:
+
+```
+./docker/git_clone_repos.sh
+```
+
+from the root directory where this repository was cloned.
+If the remote repo was already cloned, it will pull all the changes
+
 ## Compose containers
 
 ```
