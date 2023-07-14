@@ -5,12 +5,12 @@ version: '3.8'
 services:
     gateway:
         #build: https://github.com/leroleroinc/event-gateway.git
-        build: ../../event-gateway
+        build: ../../../event-gateway
         ports:
             - 8080:8080
     adverbs:
         #build: https://github.com/leroleroinc/event-adverbs.git
-        build: ../../event-adverbs
+        build: ../../../event-adverbs
         #ports:
         #    - 8081:8081
         depends_on:
@@ -20,7 +20,7 @@ services:
             - kafka
     verbs:
         #build: https://github.com/leroleroinc/event-verbs.git
-        build: ../../event-verbs
+        build: ../../../event-verbs
         #ports:
         #    - 8082:8082
         depends_on:
@@ -30,7 +30,7 @@ services:
             - kafka
     nouns:
         #build: https://github.com/leroleroinc/event-nouns.git
-        build: ../../event-nouns
+        build: ../../../event-nouns
         #ports:
         #    - 8083:8083
         depends_on:
@@ -40,14 +40,14 @@ services:
             - kafka
     database:
         #build: https://github.com/leroleroinc/database.git
-        build: ../../database
+        build: ../../../database
         ports:
             - 27017:27017
         environment:
             MONGO_INITDB_DATABASE: lerolero
     discovery:
         #build: https://github.com/leroleroinc/flux-discovery.git
-        build: ../../flux-discovery
+        build: ../../../flux-discovery
         ports:
             - 8761:8761
     cache:
